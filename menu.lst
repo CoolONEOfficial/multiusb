@@ -1,0 +1,44 @@
+timeout 30
+splashimage=(hd0,0)/boot/splash.xpm.gz 
+
+title KonBoot -->
+	find --set-root /boot/lst/konboot.lst
+	configfile /boot/lst/konboot.lst
+
+title ArchLinux -->
+	find --set-root /boot/lst/archlinux.lst
+	configfile /boot/lst/archlinux.lst
+
+title GParted Live
+    find --set-root /boot/iso/gparted.iso
+    map --heads=0 --sectors-per-track=0 /boot/iso/gparted.iso (0xff) || map --mem --heads=0 --sectors-per-track=0 /boot/iso/gparted.iso (0xff)
+    map --hook
+    root (0xff)
+    kernel /live/vmlinuz  boot=live union=overlay username=user components noeject vga=788 ip= findiso=/boot/iso/gparted.iso toram=filesystem.squashfs
+    initrd /live/initrd.img
+
+menu separator
+
+title Victoria Rus
+	map (hd0,0)/boot/iso/vcr.iso (hd32)
+	map --hook
+	root (hd32)
+	chainloader (hd32)
+	boot
+
+title Memtest86+
+	map (hd0,0)/boot/iso/mt.iso (hd32)
+	map --hook
+	root (hd32)
+	chainloader (hd32)
+	boot
+
+title commandline
+	commandline
+
+title reboot
+	reboot
+
+title halt
+	halt
+

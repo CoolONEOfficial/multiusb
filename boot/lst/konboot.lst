@@ -1,0 +1,19 @@
+title Kon-Boot (CURRENT VERSION)
+	map --mem /boot/konboot/konboot.img (fd0)
+	map --hook
+	chainloader (fd0)+1
+	map (hd1) (hd0)
+	map --hook
+	rootnoverify (fd0)
+
+title Kon-Boot v2.1 (OLD VERSION)
+	map --mem /boot/konboot/konbootOLD.img (fd0)
+	map --hook
+	chainloader (fd0)+1
+	map (hd1) (hd0)
+	map --hook
+	rootnoverify (fd0)
+
+title Back -->
+	find --set-root /menu.lst
+	configfile /menu.lst

@@ -1,0 +1,19 @@
+title ArchLinux x86_64
+	find --set-root /boot/iso/archlinux.iso 
+	map --heads=0 --sectors-per-track=0 /boot/iso/archlinux.iso (hd32) 
+	map --hook
+	root (hd32)
+	kernel /arch/boot/x86_64/vmlinuz earlymodules=loop img_dev=/dev/disk/by-uuid/98E2-7F4F img_loop=/boot/iso/archlinux.iso archisodevice=/dev/loop0 edd=off
+	initrd /arch/boot/x86_64/archiso.img
+
+title ArchLinux i686 
+	find --set-root /boot/iso/archlinux.iso 
+	map --heads=0 --sectors-per-track=0 /boot/iso/archlinux.iso (hd32) 
+	map --hook 
+	root (hd32) 
+	kernel /arch/boot/i686/vmlinuz earlymodules=loop img_dev=/dev/disk/by-uuid/98E2-7F4F img_loop=/boot/iso/archlinux.iso archisodevice=/dev/loop0 edd=off
+	initrd /arch/boot/i686/archiso.img
+
+title Back -->
+	find --set-root /menu.lst
+	configfile /menu.lst
